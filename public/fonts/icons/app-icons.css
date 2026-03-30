@@ -1,0 +1,20 @@
+@font-face {
+    font-family: "app-icons";
+    src: url("/fonts/icons/app-icons.woff2?b7ed3973a276d86011d92fdcb9ad1d7a") format("woff2"),
+url("/fonts/icons/app-icons.woff?b7ed3973a276d86011d92fdcb9ad1d7a") format("woff");
+}
+
+.pa:before {
+    font-family: app-icons !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.pa.pa-favicon:before {
+    content: "\f101";
+}

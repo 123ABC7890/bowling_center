@@ -1,0 +1,16 @@
+{
+  "inputDir": "assets/icons",
+  "outputDir": "public/fonts/icons",
+  "fontTypes": ["woff2", "woff"],
+  "assetTypes": ["css"],
+  "name": "app-icons",
+  "prefix": "pa",
+  "selector": ".pa",
+  "tag": "i",
+  "fontsUrl": "/fonts/icons",
+  "formatOptions": {
+    "json": {
+      "indent": 2
+    }
+  }
+}

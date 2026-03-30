@@ -1,0 +1,11 @@
+{
+  "name": "bowlingcenter-brooklyn",
+  "private": true,
+  "scripts": {
+    "icons": "fantasticon",
+    "icons:watch": "fantasticon --watch"
+  },
+  "devDependencies": {
+    "fantasticon": "^3.0.0"
+  }
+}
