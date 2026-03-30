@@ -1,4 +1,8 @@
 
+###> node ###
+/node_modules/
+###< node ###
+
 ###> symfony/framework-bundle ###
 /public/bundles/
 /var/
