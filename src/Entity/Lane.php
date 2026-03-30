@@ -10,6 +10,10 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: LaneRepository::class)]
 class Lane
 {
+    public const MAX_ADULTS = 8;
+    public const MAX_ADULTS_WITH_CHILDREN = 6;
+    public const MAX_CHILDREN_WITH_ADULTS = 4;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -20,15 +24,6 @@ class Lane
 
     #[ORM\Column]
     public bool $hasBumpers = false;
-
-    #[ORM\Column]
-    public int $maxAdults = 8;
-
-    #[ORM\Column]
-    public int $maxChildrenWithAdults = 4;
-
-    #[ORM\Column]
-    public int $maxAdultsWithChildren = 6;
 
     /** @var Collection<int, Reservation> */
     #[ORM\OneToMany(targetEntity: Reservation::class, mappedBy: 'lane')]
