@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reserve a Lane — Bowlingcenter Brooklyn{% endblock %}
+
+{% block body %}
+    <section class="py-5">
+        <div class="container" style="max-width: 720px;">
+            <h1 class="text-center mb-2"><i class="fa-solid fa-bowling-ball me-2 text-primary"></i>Reserve a Lane</h1>
+            <p class="text-center text-muted mb-4">Pick your date, time, and extras — we'll handle the rest.</p>
+
+            {% for flash in app.flashes('danger') %}
+                <div class="alert alert-danger"><i class="fa-solid fa-circle-exclamation me-2"></i>{{ flash }}</div>
+            {% endfor %}
+            {% for flash in app.flashes('success') %}
+                <div class="alert alert-success"><i class="fa-solid fa-circle-check me-2"></i>{{ flash }}</div>
+            {% endfor %}
+
+            {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': ''}}) }}
+
+                {# Date & Time #}
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <i class="fa-regular fa-calendar-days me-2"></i>Date & Time
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold">Date</label>
+                                {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.date) }}
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold">Start Time</label>
+                                {{ form_widget(form.startHour, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.startHour) }}
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold">Duration</label>
+                                {{ form_widget(form.duration, {'attr': {'class': 'form-select'}}) }}
+                                {{ form_errors(form.duration) }}
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <small class="text-muted">
+                                <i class="fa-regular fa-clock me-1"></i>
+                                Mon–Fri 14:00–22:00 &middot; Sat–Sun 14:00–00:00
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+                {# Lane & Players #}
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <i class="fa-solid fa-bowling-ball me-2"></i>Lane & Players
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Lane</label>
+                            {{ form_widget(form.lane, {'attr': {'class': 'form-select'}}) }}
+                            {{ form_errors(form.lane) }}
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Adults</label>
+                                {{ form_widget(form.numberOfAdults, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.numberOfAdults) }}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Children</label>
+                                {{ form_widget(form.numberOfChildren, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.numberOfChildren) }}
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <small class="text-muted">
+                                <i class="fa-solid fa-users me-1"></i>
+                                Max 8 adults per lane, or 6 adults + 4 children
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+                {# Packages #}
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <i class="fa-solid fa-gift me-2"></i>Optional Packages
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold"><i class="fa-solid fa-utensils me-1"></i>Snack Package</label>
+                                {{ form_widget(form.snackPackage, {'attr': {'class': 'form-select'}}) }}
+                                {{ form_errors(form.snackPackage) }}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold"><i class="fa-solid fa-champagne-glasses me-1"></i>Party Package</label>
+                                {{ form_widget(form.partyPackage, {'attr': {'class': 'form-select'}}) }}
+                                {{ form_errors(form.partyPackage) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fa-solid fa-check me-2"></i>Place Reservation
+                    </button>
+                </div>
+
+            {{ form_end(form) }}
+        </div>
+    </section>
+{% endblock %}
