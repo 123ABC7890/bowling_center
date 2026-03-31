@@ -1,4 +1,5 @@
-body {
-    --primary: #1a3a6b;
-    --secondary: #f5c518;
+:root {
+    --primary: #2b3f93;
+    --primary-light: #4e93cfee;
+    --secondary: #ff7600;
 }
