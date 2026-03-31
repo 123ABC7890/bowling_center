@@ -28,8 +28,8 @@ class TariffCrudController extends AbstractCrudController
     {
         yield TextField::new('name');
         yield ChoiceField::new('dayRange')->setChoices([
-            'Mon–Thu' => 'mon_thu',
-            'Fri–Sun' => 'fri_sun',
+            'Mon-Thu' => 'mon_thu',
+            'Fri-Sun' => 'fri_sun',
         ]);
         yield TimeField::new('startTime');
         yield TimeField::new('endTime');

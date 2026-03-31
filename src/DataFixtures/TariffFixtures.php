@@ -18,7 +18,7 @@ class TariffFixtures extends Fixture
         $tariffs = [
             [
                 'ref' => self::TARIFF_MONTHU,
-                'name' => 'Mon–Thu',
+                'name' => 'Mon-Thu',
                 'dayRange' => DayRange::MonThu,
                 'start' => '14:00',
                 'end' => '22:00',
@@ -26,7 +26,7 @@ class TariffFixtures extends Fixture
             ],
             [
                 'ref' => self::TARIFF_FRISUN_AFTERNOON,
-                'name' => 'Fri–Sun Afternoon',
+                'name' => 'Fri-Sun Afternoon',
                 'dayRange' => DayRange::FriSun,
                 'start' => '14:00',
                 'end' => '18:00',
@@ -34,7 +34,7 @@ class TariffFixtures extends Fixture
             ],
             [
                 'ref' => self::TARIFF_FRISUN_EVENING,
-                'name' => 'Fri–Sun Evening',
+                'name' => 'Fri-Sun Evening',
                 'dayRange' => DayRange::FriSun,
                 'start' => '18:00',
                 'end' => '00:00',
