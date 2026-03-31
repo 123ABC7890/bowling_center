@@ -1,13 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <section class="text-center py-5">
-        <h1 class="display-4 fw-bold text-primary">Welcome to Bowlingcenter Brooklyn</h1>
-        <p class="lead text-muted mt-3">8 lanes, great packages, and fun for the whole family.</p>
-        <a href="#" class="btn btn-primary btn-lg mt-3">Reserve a Lane</a>
+    <section class="hero text-center py-5 d-flex align-items-center justify-content-center" style="background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('{{ asset('images/hero-bg.png') }}') center/cover no-repeat; min-height: 60vh;">
+        <div>
+            <h1 class="display-4 fw-bold text-white">Welcome to Bowlingcenter Brooklyn</h1>
+            <p class="lead text-white-50 mt-3">8 lanes, great packages, and fun for the whole family.</p>
+            <a href="#" class="btn btn-primary btn-lg mt-3">Reserve a Lane</a>
+        </div>
     </section>
 
     <section class="py-5">
+        <div class="container">
         <h2 class="text-center mb-4">Our Tariffs</h2>
         <div class="row g-4 justify-content-center">
             <div class="col-md-4">
@@ -38,9 +41,11 @@
                 </div>
             </div>
         </div>
+        </div>
     </section>
 
     <section class="py-5">
+        <div class="container">
         <h2 class="text-center mb-4">Packages</h2>
         <div class="row g-4">
             <div class="col-md-6">
@@ -86,9 +91,11 @@
                 </div>
             </div>
         </div>
+        </div>
     </section>
 
     <section class="py-5">
+        <div class="container">
         <h2 class="text-center mb-4">Opening Hours</h2>
         <div class="row justify-content-center">
             <div class="col-md-6">
@@ -105,6 +112,7 @@
                     </tbody>
                 </table>
             </div>
+        </div>
         </div>
     </section>
 {% endblock %}
