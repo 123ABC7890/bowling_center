@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Login — Bowlingcenter Brooklyn{% endblock %}
+
+{% block body %}
+    <section class="d-flex align-items-center justify-content-center" style="background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('{{ asset('images/hero-bg.png') }}') center/cover no-repeat; min-height: 85vh;">
+        <div class="container" style="max-width: 460px;">
+            <div class="text-center mb-4">
+                <h1 class="display-5 fw-bold text-white">Welcome Back</h1>
+                <p class="lead text-white-50">Log in to your account</p>
+            </div>
+
+            {% for flash in app.flashes('success') %}
+                <div class="alert alert-success"><i class="fa-solid fa-circle-check me-2"></i>{{ flash }}</div>
+            {% endfor %}
+
+            {% if error %}
+                <div class="alert alert-danger"><i class="fa-solid fa-circle-exclamation me-2"></i>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+
+            <div class="card shadow">
+                <div class="card-body p-4">
+                    <form method="post">
+                        <div class="mb-3">
+                            <label for="input-email" class="form-label fw-semibold">
+                                <i class="fa-solid fa-envelope me-1"></i>Email
+                            </label>
+                            <input type="email" id="input-email" name="_username" value="{{ last_username }}" class="form-control" required autofocus>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="input-password" class="form-label fw-semibold">
+                                <i class="fa-solid fa-lock me-1"></i>Password
+                            </label>
+                            <input type="password" id="input-password" name="_password" class="form-control" required>
+                        </div>
+
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fa-solid fa-right-to-bracket me-2"></i>Log In
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <p class="text-center mt-4 text-white-50">
+                Don't have an account?
+                <a href="{{ path('app_register') }}" class="fw-semibold text-white">Create one</a>
+            </p>
+        </div>
+    </section>
+{% endblock %}

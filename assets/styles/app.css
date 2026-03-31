@@ -15,12 +15,16 @@
 }
 
 .btn-primary {
-    --bs-btn-bg: var(--primary);
-    --bs-btn-border-color: var(--primary);
-    --bs-btn-hover-bg: #1e2d6a;
-    --bs-btn-hover-border-color: #1e2d6a;
+    background: linear-gradient(90deg, var(--primary-light) 25%, var(--primary) 100%);
+    border: none;
+    --bs-btn-hover-bg: var(--primary);
+    --bs-btn-hover-border-color: var(--primary);
     --bs-btn-active-bg: #172258;
     --bs-btn-active-border-color: #172258;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(90deg, var(--primary) 0%, var(--primary) 100%);
 }
 
 .btn-secondary {
@@ -33,7 +37,7 @@
 }
 
 .bg-primary {
-    background-color: var(--primary) !important;
+    background: linear-gradient(90deg, var(--primary-light) 25%, var(--primary) 100%) !important;
 }
 
 .text-primary {
