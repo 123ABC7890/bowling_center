@@ -2,4 +2,56 @@
     --primary: #2b3f93;
     --primary-light: #4e93cfee;
     --secondary: #ff7600;
+
+    /* Override Bootstrap theme colors */
+    --bs-primary: var(--primary);
+    --bs-primary-rgb: 43, 63, 147;
+    --bs-secondary: var(--secondary);
+    --bs-secondary-rgb: 255, 118, 0;
+    --bs-link-color: var(--primary);
+    --bs-link-color-rgb: 43, 63, 147;
+    --bs-link-hover-color: #1e2d6a;
+    --bs-link-hover-color-rgb: 30, 45, 106;
+}
+
+.btn-primary {
+    --bs-btn-bg: var(--primary);
+    --bs-btn-border-color: var(--primary);
+    --bs-btn-hover-bg: #1e2d6a;
+    --bs-btn-hover-border-color: #1e2d6a;
+    --bs-btn-active-bg: #172258;
+    --bs-btn-active-border-color: #172258;
+}
+
+.btn-secondary {
+    --bs-btn-bg: var(--secondary);
+    --bs-btn-border-color: var(--secondary);
+    --bs-btn-hover-bg: #e06800;
+    --bs-btn-hover-border-color: #e06800;
+    --bs-btn-active-bg: #cc5f00;
+    --bs-btn-active-border-color: #cc5f00;
+}
+
+.bg-primary {
+    background-color: var(--primary) !important;
+}
+
+.text-primary {
+    color: var(--primary) !important;
+}
+
+.bg-secondary {
+    background-color: var(--secondary) !important;
+}
+
+.text-secondary {
+    color: var(--secondary) !important;
+}
+
+.border-primary {
+    border-color: var(--primary) !important;
+}
+
+.border-secondary {
+    border-color: var(--secondary) !important;
 }
