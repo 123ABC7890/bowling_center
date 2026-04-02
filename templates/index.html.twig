@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <section class="hero text-center py-5 d-flex align-items-center justify-content-center" style="background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('{{ asset('images/hero-bg.png') }}') center/cover no-repeat; min-height: 60vh;">
-        <div>
+    <section class="hero text-center py-5 d-flex align-items-center justify-content-center" style="min-height: 60vh;">
+        <div class="container">
             <h1 class="display-4 fw-bold text-white">Welcome to Bowlingcenter Brooklyn</h1>
             <p class="lead text-white-50 mt-3">8 lanes, great packages, and fun for the whole family.</p>
             <a href="{{ path('app_reservation_new') }}" class="btn btn-primary btn-lg mt-3"><i class="fa-solid fa-bowling-ball me-2"></i>Reserve a Lane</a>
@@ -11,7 +11,7 @@
 
     <section class="py-5">
         <div class="container">
-        <h2 class="text-center mb-4"><i class="fa-solid fa-tags me-2"></i>Our Tariffs</h2>
+        <h2 class="text-center mb-4 text-white"><i class="fa-solid fa-tags me-2"></i>Our Tariffs</h2>
         <div class="row g-4 justify-content-center">
             <div class="col-md-4">
                 <div class="card h-100 border-primary">
@@ -46,10 +46,10 @@
 
     <section class="py-5">
         <div class="container">
-        <h2 class="text-center mb-4"><i class="fa-solid fa-box-open me-2"></i>Packages</h2>
+        <h2 class="text-center mb-4 text-white"><i class="fa-solid fa-box-open me-2"></i>Packages</h2>
         <div class="row g-4">
             <div class="col-md-6">
-                <h4 class="text-primary"><i class="fa-solid fa-utensils me-2"></i>Snack Packages</h4>
+                <h4 class="text-white"><i class="fa-solid fa-utensils me-2"></i>Snack Packages</h4>
                 <div class="card mb-3">
                     <div class="card-body d-flex justify-content-between align-items-center">
                         <div>
@@ -70,7 +70,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <h4 class="text-primary"><i class="fa-solid fa-party-horn me-2"></i>Party Packages</h4>
+                <h4 class="text-white"><i class="fa-solid fa-party-horn me-2"></i>Party Packages</h4>
                 <div class="card mb-3">
                     <div class="card-body d-flex justify-content-between align-items-center">
                         <div>
@@ -105,7 +105,7 @@
 
     <section class="py-5">
         <div class="container">
-        <h2 class="text-center mb-4"><i class="fa-regular fa-clock me-2"></i>Opening Hours</h2>
+        <h2 class="text-center mb-4 text-white"><i class="fa-regular fa-clock me-2"></i>Opening Hours</h2>
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <table class="table table-striped text-center">
