@@ -4,9 +4,9 @@
 
 {% block body %}
     <section class="py-5">
-        <div class="container" style="max-width: 620px;">
+        <div class="container">
             <div class="text-center mb-4">
-                <i class="fa-solid fa-circle-check text-success" style="font-size: 3rem;"></i>
+                <i class="fa-solid fa-circle-check text-success"></i>
                 <h1 class="mt-3">Reservation Placed!</h1>
                 <p class="text-muted">Your reservation is pending confirmation. Here are the details:</p>
             </div>
@@ -18,7 +18,7 @@
                 <div class="card-body">
                     <table class="table table-borderless mb-0">
                         <tr>
-                            <td class="fw-semibold text-muted" style="width: 40%;"><i class="fa-solid fa-bowling-ball me-2"></i>Lane</td>
+                            <td class="fw-semibold text-muted"><i class="fa-solid fa-bowling-ball me-2"></i>Lane</td>
                             <td>{{ reservation.lane }}</td>
                         </tr>
                         <tr>

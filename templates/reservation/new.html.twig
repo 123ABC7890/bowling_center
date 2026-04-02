@@ -4,7 +4,7 @@
 
 {% block body %}
     <section class="py-5">
-        <div class="container" style="max-width: 900px;">
+        <div class="container">
             <h1 class="text-center mb-2"><i class="fa-solid fa-bowling-ball me-2 text-primary"></i>Reserve a Lane</h1>
             <p class="text-center text-muted mb-4">Fill in your details, pick a date, and choose your lane.</p>
 
@@ -136,10 +136,10 @@
                             Availability for {{ selectedDate|date('l, d F Y') }}
                         </p>
                         <div class="table-responsive">
-                            <table class="table table-bordered mb-0 text-center align-middle small" style="table-layout: fixed;">
+                            <table class="table table-bordered mb-0 text-center align-middle small">
                                 <thead class="table-light">
                                     <tr>
-                                        <th style="width: 120px;">Lane</th>
+                                        <th>Lane</th>
                                         {% for hour in hours %}
                                             <th>{{ hour }}-{{ hour + 1 == 24 ? '00' : hour + 1 }}</th>
                                         {% endfor %}
