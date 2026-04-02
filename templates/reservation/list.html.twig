@@ -61,7 +61,14 @@
                                             <span class="badge bg-secondary">{{ r.status|capitalize }}</span>
                                         {% endif %}
                                     </td>
-                                    <td>
+                                    <td class="d-flex gap-2">
+                                        {% if r.score %}
+                                            <a href="{{ path('app_reservation_score', {id: r.id}) }}" class="btn btn-sm btn-dark">
+                                                <i class="fa-solid fa-ranking-star me-1"></i>Score
+                                            </a>
+                                        {% else %}
+                                            <a class="btn btn-sm btn-dark disabled"><i class="fa-solid fa-ranking-star me-1"></i>Score</a>
+                                        {% endif %}
                                         <form method="post" action="{{ path('app_reservation_cancel', {id: r.id}) }}" onsubmit="return confirm('Cancel this reservation?')">
                                             <input type="hidden" name="_token" value="{{ csrf_token('cancel-' ~ r.id) }}">
                                             <button type="submit" class="btn btn-sm btn-outline-danger">
@@ -91,6 +98,7 @@
                                 <th>Players</th>
                                 <th>Total</th>
                                 <th>Status</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -109,6 +117,15 @@
                                             <span class="badge bg-success">Confirmed</span>
                                         {% else %}
                                             <span class="badge bg-secondary">{{ r.status|capitalize }}</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if r.score %}
+                                            <a href="{{ path('app_reservation_score', {id: r.id}) }}" class="btn btn-sm btn-dark">
+                                                <i class="fa-solid fa-ranking-star me-1"></i>Score
+                                            </a>
+                                        {% else %}
+                                            <a class="btn btn-sm btn-dark disabled"><i class="fa-solid fa-ranking-star me-1"></i>Score</a>
                                         {% endif %}
                                     </td>
                                 </tr>

@@ -254,6 +254,34 @@ class ReservationController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}/score', name: 'app_reservation_score')]
+    public function score(Reservation $reservation): Response
+    {
+        if ($this->getUser() && $reservation->user && $reservation->user !== $this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $score = $reservation->score;
+
+        $playerTotals = [];
+        $topScorer = null;
+
+        if ($score && !empty($score->value)) {
+            foreach ($score->getPlayerNames() as $name) {
+                $playerTotals[$name] = $score->getPlayerTotal($name);
+            }
+            arsort($playerTotals);
+            $topScorer = array_key_first($playerTotals);
+        }
+
+        return $this->render('reservation/score.html.twig', [
+            'reservation' => $reservation,
+            'score' => $score,
+            'playerTotals' => $playerTotals,
+            'topScorer' => $topScorer,
+        ]);
+    }
+
     #[Route('/{id}/cancel', name: 'app_reservation_cancel', methods: ['POST'])]
     #[IsGranted('ROLE_USER')]
     public function cancel(Reservation $reservation, EntityManagerInterface $em, Request $request): Response
