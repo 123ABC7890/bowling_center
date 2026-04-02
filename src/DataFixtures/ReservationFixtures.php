@@ -9,6 +9,8 @@ use Doctrine\Persistence\ObjectManager;
 
 class ReservationFixtures extends Fixture implements DependentFixtureInterface
 {
+    public const RESERVATION_REFERENCE_PREFIX = 'reservation-';
+
     public function load(ObjectManager $manager): void
     {
         $reservations = [
@@ -104,7 +106,7 @@ class ReservationFixtures extends Fixture implements DependentFixtureInterface
             ],
         ];
 
-        foreach ($reservations as $data) {
+        foreach ($reservations as $key => $data) {
             $reservation = new Reservation();
             $reservation->user = $this->getReference($data['user'], \App\Entity\User::class);
             $reservation->lane = $this->getReference($data['lane'], \App\Entity\Lane::class);
@@ -120,6 +122,7 @@ class ReservationFixtures extends Fixture implements DependentFixtureInterface
             $reservation->status = $data['status'];
 
             $manager->persist($reservation);
+            $this->addReference(self::RESERVATION_REFERENCE_PREFIX . $key, $reservation, Reservation::class);
         }
 
         $manager->flush();

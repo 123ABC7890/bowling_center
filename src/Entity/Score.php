@@ -24,4 +24,57 @@ class Score
     {
         return $this->id;
     }
+
+    public function addRound(array $playerScores): self
+    {
+        $this->value[] = $playerScores;
+
+        return $this;
+    }
+
+    public function setPlayerScore(int $round, string $playerName, int $score): self
+    {
+        if (!isset($this->value[$round])) {
+            throw new \OutOfRangeException(sprintf('Round %d does not exist. Add it first with addRound().', $round));
+        }
+
+        $this->value[$round][$playerName] = $score;
+
+        return $this;
+    }
+
+    public function getPlayerScore(int $round, string $playerName): ?int
+    {
+        return $this->value[$round][$playerName] ?? null;
+    }
+
+    public function getRound(int $round): ?array
+    {
+        return $this->value[$round] ?? null;
+    }
+
+    public function getRoundCount(): int
+    {
+        return count($this->value);
+    }
+
+    public function getPlayerNames(): array
+    {
+        if (empty($this->value)) {
+            return [];
+        }
+
+        return array_keys($this->value[0]);
+    }
+
+    public function getPlayerTotal(string $playerName): int
+    {
+        $total = 0;
+
+        foreach ($this->value as $round) {
+            $total += $round[$playerName] ?? 0;
+        }
+
+        return $total;
+    }
 }
