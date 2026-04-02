@@ -1,43 +1,47 @@
 :root {
-    --primary: #2b3f93;
-    --primary-light: #4e93cfee;
-    --secondary: #ff7600;
+    --primary: #ff7600;
+    --primary-light: #f90e;
+    --primary-dark: #e06800;
+    --primary-darker: #cc5f00;
+    --secondary: var(--primary);
 
     /* Override Bootstrap theme colors */
     --bs-primary: var(--primary);
-    --bs-primary-rgb: 43, 63, 147;
+    --bs-primary-rgb: 255, 118, 0;
     --bs-secondary: var(--secondary);
     --bs-secondary-rgb: 255, 118, 0;
     --bs-link-color: var(--primary);
-    --bs-link-color-rgb: 43, 63, 147;
-    --bs-link-hover-color: #1e2d6a;
-    --bs-link-hover-color-rgb: 30, 45, 106;
+    --bs-link-color-rgb: 255, 118, 0;
+    --bs-link-hover-color: var(--primary-dark);
+    --bs-link-hover-color-rgb: 224, 104, 0;
+
+    --gradient-primary: linear-gradient(90deg, var(--primary-light) 0%, var(--primary) 100%) no-repeat padding-box padding-box;
 }
 
 .btn-primary {
-    background: linear-gradient(90deg, var(--primary-light) 25%, var(--primary) 100%);
+    background: var(--gradient-primary);
     border: none;
-    --bs-btn-hover-bg: var(--primary);
-    --bs-btn-hover-border-color: var(--primary);
-    --bs-btn-active-bg: #172258;
-    --bs-btn-active-border-color: #172258;
+    --bs-btn-hover-bg: var(--primary-dark);
+    --bs-btn-hover-border-color: var(--primary-dark);
+    --bs-btn-active-bg: var(--primary-darker);
+    --bs-btn-active-border-color: var(--primary-darker);
 }
 
 .btn-primary:hover {
-    background: linear-gradient(90deg, var(--primary) 0%, var(--primary) 100%);
+    background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%) no-repeat padding-box padding-box;
 }
 
 .btn-secondary {
     --bs-btn-bg: var(--secondary);
     --bs-btn-border-color: var(--secondary);
-    --bs-btn-hover-bg: #e06800;
-    --bs-btn-hover-border-color: #e06800;
-    --bs-btn-active-bg: #cc5f00;
-    --bs-btn-active-border-color: #cc5f00;
+    --bs-btn-hover-bg: var(--primary-dark);
+    --bs-btn-hover-border-color: var(--primary-dark);
+    --bs-btn-active-bg: var(--primary-darker);
+    --bs-btn-active-border-color: var(--primary-darker);
 }
 
 .bg-primary {
-    background: linear-gradient(90deg, var(--primary-light) 25%, var(--primary) 100%) !important;
+    background: var(--gradient-primary) !important;
 }
 
 .text-primary {
