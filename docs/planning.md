@@ -1,6 +1,7 @@
 ## Todo
 
 ### 1.4 Password reset
+
   - due: 2026-04-03
   - defaultExpanded: false
     ```md
@@ -8,6 +9,7 @@
     ```
 
 ### 1.5 User profile
+
   - due: 2026-04-03
   - defaultExpanded: false
     ```md
@@ -15,6 +17,7 @@
     ```
 
 ### 2.3 Lane availability calendar
+
   - due: 2026-04-04
   - defaultExpanded: false
     ```md
@@ -22,6 +25,7 @@
     ```
 
 ### 3.9 My reservations list
+
   - due: 2026-04-03
   - defaultExpanded: false
     ```md
@@ -29,6 +33,7 @@
     ```
 
 ### 3.10 Cancel reservation
+
   - due: 2026-04-03
   - defaultExpanded: false
     ```md
@@ -36,6 +41,7 @@
     ```
 
 ### 3.11 Magic Bowling booking
+
   - due: 2026-04-03
   - defaultExpanded: false
     ```md
@@ -43,6 +49,7 @@
     ```
 
 ### 4.2 Magic Bowling tariff
+
   - due: 2026-04-03
   - defaultExpanded: false
     ```md
@@ -50,6 +57,7 @@
     ```
 
 ### 5.1 Employee: Today's reservations
+
   - due: 2026-04-04
   - defaultExpanded: false
     ```md
@@ -57,6 +65,7 @@
     ```
 
 ### 5.2 Employee: Lane occupancy
+
   - due: 2026-04-04
   - defaultExpanded: false
     ```md
@@ -64,6 +73,7 @@
     ```
 
 ### 5.3 Employee: Change reservation status
+
   - due: 2026-04-05
   - defaultExpanded: false
     ```md
@@ -71,6 +81,7 @@
     ```
 
 ### 5.4 Employee: Walk-in reservation
+
   - due: 2026-04-05
   - defaultExpanded: false
     ```md
@@ -78,6 +89,7 @@
     ```
 
 ### 6.6 Admin: Dashboard statistics
+
   - due: 2026-04-05
   - defaultExpanded: false
     ```md
@@ -85,6 +97,7 @@
     ```
 
 ### 7.1 Email confirmation
+
   - due: 2026-04-05
   - defaultExpanded: false
     ```md
@@ -92,6 +105,7 @@
     ```
 
 ### 7.2 Status change email
+
   - due: 2026-04-05
   - defaultExpanded: false
     ```md
@@ -103,6 +117,7 @@
 ## Done
 
 ### 1.1 User registration
+
   - due: 2026-03-31
   - defaultExpanded: false
     ```md
@@ -110,6 +125,7 @@
     ```
 
 ### 1.2 User login
+
   - due: 2026-03-31
   - defaultExpanded: false
     ```md
@@ -117,6 +133,7 @@
     ```
 
 ### 1.3 User logout
+
   - due: 2026-03-31
   - defaultExpanded: false
     ```md
@@ -124,6 +141,7 @@
     ```
 
 ### 2.1 Homepage with tariffs, packages & hours
+
   - due: 2026-03-31
   - defaultExpanded: false
     ```md
@@ -131,6 +149,7 @@
     ```
 
 ### 2.2 Magic Bowling section on homepage
+
   - due: 2026-03-31
   - defaultExpanded: false
     ```md
@@ -138,6 +157,7 @@
     ```
 
 ### 3.1 Create reservation
+
   - due: 2026-03-31
   - defaultExpanded: false
     ```md
@@ -145,6 +165,7 @@
     ```
 
 ### 3.2 Capacity rules
+
   - due: 2026-03-31
   - defaultExpanded: false
     ```md
@@ -152,6 +173,7 @@
     ```
 
 ### 3.3 Snack packages
+
   - due: 2026-03-31
   - defaultExpanded: false
     ```md
@@ -159,6 +181,7 @@
     ```
 
 ### 3.4 Party packages
+
   - due: 2026-03-31
   - defaultExpanded: false
     ```md
@@ -166,6 +189,7 @@
     ```
 
 ### 3.5 Price calculation
+
   - due: 2026-03-31
   - defaultExpanded: false
     ```md
@@ -173,6 +197,7 @@
     ```
 
 ### 3.6 Reservation confirmation page
+
   - due: 2026-03-31
   - defaultExpanded: false
     ```md
@@ -180,6 +205,7 @@
     ```
 
 ### 3.7 Double-booking prevention
+
   - due: 2026-03-31
   - defaultExpanded: false
     ```md
@@ -187,6 +213,7 @@
     ```
 
 ### 3.8 Opening hours enforcement
+
   - due: 2026-03-31
   - defaultExpanded: false
     ```md
@@ -194,6 +221,7 @@
     ```
 
 ### 4.1 Tariff system
+
   - due: 2026-03-30
   - defaultExpanded: false
     ```md
@@ -201,6 +229,7 @@
     ```
 
 ### 6.1 Admin: Manage reservations
+
   - due: 2026-03-30
   - defaultExpanded: false
     ```md
@@ -208,6 +237,7 @@
     ```
 
 ### 6.2 Admin: Manage lanes
+
   - due: 2026-03-30
   - defaultExpanded: false
     ```md
@@ -215,6 +245,7 @@
     ```
 
 ### 6.3 Admin: Manage tariffs
+
   - due: 2026-03-30
   - defaultExpanded: false
     ```md
@@ -222,6 +253,7 @@
     ```
 
 ### 6.4 Admin: Manage packages
+
   - due: 2026-03-30
   - defaultExpanded: false
     ```md
@@ -229,8 +261,10 @@
     ```
 
 ### 6.5 Admin: Manage users & roles
+
   - due: 2026-03-30
   - defaultExpanded: false
     ```md
     Manage users and assign roles through EasyAdmin (2h)
     ```
+
