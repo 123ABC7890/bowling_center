@@ -114,6 +114,12 @@ class ReservationController extends AbstractController
             }
         }
 
+        if ($form->isSubmitted() && !$form->isValid()) {
+            foreach ($form->getErrors(true) as $error) {
+                $this->addFlash('danger', $error->getMessage());
+            }
+        }
+
         if ($form->isSubmitted() && $form->isValid()) {
             $date = $form->get('date')->getData();
             $startHour = $form->get('startHour')->getData();

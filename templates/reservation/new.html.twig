@@ -15,7 +15,7 @@
                 <div class="alert alert-success"><i class="fa-solid fa-circle-check me-2"></i>{{ flash }}</div>
             {% endfor %}
 
-            {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'id': 'reservation-form'}}) }}
+            {{ form_start(form, {'attr': {'id': 'reservation-form'}}) }}
 
                 {# 1. People #}
                 <div class="card mb-4 shadow-sm">
@@ -28,17 +28,14 @@
                                 <div class="col-md-4">
                                     <label class="form-label fw-semibold">Name</label>
                                     {{ form_widget(form.name, {'attr': {'class': 'form-control', 'data-param': 'name'}}) }}
-                                    {{ form_errors(form.name) }}
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label fw-semibold">Email</label>
                                     {{ form_widget(form.email, {'attr': {'class': 'form-control', 'data-param': 'email'}}) }}
-                                    {{ form_errors(form.email) }}
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label fw-semibold">Phone <small class="text-muted">(optional)</small></label>
                                     {{ form_widget(form.phone, {'attr': {'class': 'form-control', 'data-param': 'phone'}}) }}
-                                    {{ form_errors(form.phone) }}
                                 </div>
                             </div>
                             <hr>
@@ -47,12 +44,10 @@
                             <div class="col-md-6">
                                 <label class="form-label fw-semibold">Adults</label>
                                 {{ form_widget(form.numberOfAdults, {'attr': {'class': 'form-control', 'data-param': 'adults'}}) }}
-                                {{ form_errors(form.numberOfAdults) }}
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label fw-semibold">Children</label>
                                 {{ form_widget(form.numberOfChildren, {'attr': {'class': 'form-control', 'data-param': 'children'}}) }}
-                                {{ form_errors(form.numberOfChildren) }}
                             </div>
                         </div>
                         <div class="mt-2">
@@ -74,17 +69,14 @@
                             <div class="col-md-4">
                                 <label class="form-label fw-semibold">Date</label>
                                 {{ form_widget(form.date, {'attr': {'class': 'form-control', 'data-param': 'date', 'data-refresh': '1'}}) }}
-                                {{ form_errors(form.date) }}
                             </div>
                             <div class="col-md-4">
                                 <label class="form-label fw-semibold">Start Time</label>
                                 {{ form_widget(form.startHour, {'attr': {'class': 'form-control', 'data-param': 'startHour'}}) }}
-                                {{ form_errors(form.startHour) }}
                             </div>
                             <div class="col-md-4">
                                 <label class="form-label fw-semibold">Duration</label>
                                 {{ form_widget(form.duration, {'attr': {'class': 'form-select', 'data-param': 'duration'}}) }}
-                                {{ form_errors(form.duration) }}
                             </div>
                         </div>
                         <div class="mt-2">
@@ -106,12 +98,10 @@
                             <div class="col-md-6">
                                 <label class="form-label fw-semibold"><i class="fa-solid fa-utensils me-1"></i>Snack Package</label>
                                 {{ form_widget(form.snackPackage, {'attr': {'class': 'form-select', 'data-param': 'snack'}}) }}
-                                {{ form_errors(form.snackPackage) }}
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label fw-semibold"><i class="fa-solid fa-champagne-glasses me-1"></i>Party Package</label>
                                 {{ form_widget(form.partyPackage, {'attr': {'class': 'form-select', 'data-param': 'party'}}) }}
-                                {{ form_errors(form.partyPackage) }}
                             </div>
                         </div>
                     </div>
@@ -126,7 +116,6 @@
                         <div class="mb-3">
                             <label class="form-label fw-semibold">Lane</label>
                             {{ form_widget(form.lane, {'attr': {'class': 'form-select', 'data-param': 'lane'}}) }}
-                            {{ form_errors(form.lane) }}
                         </div>
 
                         <hr>

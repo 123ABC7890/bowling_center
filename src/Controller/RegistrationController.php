@@ -27,6 +27,12 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(RegistrationType::class, $user);
         $form->handleRequest($request);
 
+        if ($form->isSubmitted() && !$form->isValid()) {
+            foreach ($form->getErrors(true) as $error) {
+                $this->addFlash('danger', $error->getMessage());
+            }
+        }
+
         if ($form->isSubmitted() && $form->isValid()) {
             $user->password = $passwordHasher->hashPassword(
                 $user,
