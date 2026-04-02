@@ -13,6 +13,10 @@ class Score
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\OneToOne(targetEntity: Reservation::class, inversedBy: 'score')]
+    #[ORM\JoinColumn(nullable: false)]
+    public ?Reservation $reservation = null;
+
     #[ORM\Column(type: 'json')]
     public array $value = [];
 

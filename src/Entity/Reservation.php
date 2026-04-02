@@ -62,6 +62,9 @@ class Reservation
     #[ORM\ManyToOne(targetEntity: Package::class)]
     public ?Package $partyPackage = null;
 
+    #[ORM\OneToOne(targetEntity: Score::class, mappedBy: 'reservation', cascade: ['persist', 'remove'])]
+    public ?Score $score = null;
+
     #[ORM\Column(type: Types::DECIMAL, precision: 8, scale: 2)]
     public ?string $totalPrice = null;
 
