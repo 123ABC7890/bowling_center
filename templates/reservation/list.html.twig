@@ -29,57 +29,44 @@
             {% if upcoming is empty %}
                 <div class="alert alert-info">No upcoming reservations. <a href="{{ path('app_reservation_new') }}">Book a lane now!</a></div>
             {% else %}
-                <div class="table-responsive">
-                    <table class="table table-hover align-middle">
-                        <thead class="table-primary">
-                            <tr>
-                                <th>#</th>
-                                <th>Date</th>
-                                <th>Time</th>
-                                <th>Lane</th>
-                                <th>Players</th>
-                                <th>Total</th>
-                                <th>Status</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for r in upcoming %}
-                                <tr>
-                                    <td>{{ r.id }}</td>
-                                    <td>{{ r.startTime|date('d/m/Y') }}</td>
-                                    <td>{{ r.startTime|date('H:i') }} – {{ r.endTime|date('H:i') }}</td>
-                                    <td>{{ r.lane }}</td>
-                                    <td>{{ r.numberOfAdults }}A{% if r.numberOfChildren > 0 %} + {{ r.numberOfChildren }}C{% endif %}</td>
-                                    <td>&euro;{{ r.totalPrice|number_format(2) }}</td>
-                                    <td>
-                                        {% if r.status == constant('App\\Entity\\Reservation::STATUS_CONFIRMED') %}
-                                            <span class="badge bg-success">Confirmed</span>
-                                        {% elseif r.status == constant('App\\Entity\\Reservation::STATUS_PENDING') %}
-                                            <span class="badge bg-warning text-dark">Pending</span>
-                                        {% else %}
-                                            <span class="badge bg-secondary">{{ r.status|capitalize }}</span>
-                                        {% endif %}
-                                    </td>
-                                    <td class="d-flex gap-2">
-                                        {% if r.score %}
-                                            <a href="{{ path('app_reservation_score', {id: r.id}) }}" class="btn btn-sm btn-dark">
-                                                <i class="fa-solid fa-ranking-star me-1"></i>Score
-                                            </a>
-                                        {% else %}
-                                            <a class="btn btn-sm btn-dark disabled"><i class="fa-solid fa-ranking-star me-1"></i>Score</a>
-                                        {% endif %}
-                                        <form method="post" action="{{ path('app_reservation_cancel', {id: r.id}) }}" onsubmit="return confirm('Cancel this reservation?')">
-                                            <input type="hidden" name="_token" value="{{ csrf_token('cancel-' ~ r.id) }}">
-                                            <button type="submit" class="btn btn-sm btn-outline-danger">
-                                                <i class="fa-solid fa-xmark me-1"></i>Cancel
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                <div class="row g-3">
+                    {% for r in upcoming %}
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card shadow-sm h-100">
+                                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                                    <span class="fw-semibold"><i class="fa-solid fa-bowling-ball me-2 text-primary"></i>{{ r.lane }}</span>
+                                    {% if r.status == constant('App\\Entity\\Reservation::STATUS_CONFIRMED') %}
+                                        <span class="badge bg-success">Confirmed</span>
+                                    {% elseif r.status == constant('App\\Entity\\Reservation::STATUS_PENDING') %}
+                                        <span class="badge bg-warning text-dark">Pending</span>
+                                    {% else %}
+                                        <span class="badge bg-secondary">{{ r.status|capitalize }}</span>
+                                    {% endif %}
+                                </div>
+                                <div class="card-body">
+                                    <p class="mb-1"><i class="fa-regular fa-calendar-days me-2 text-muted"></i>{{ r.startTime|date('d/m/Y') }}</p>
+                                    <p class="mb-1"><i class="fa-regular fa-clock me-2 text-muted"></i>{{ r.startTime|date('H:i') }} – {{ r.endTime|date('H:i') }}</p>
+                                    <p class="mb-1"><i class="fa-solid fa-users me-2 text-muted"></i>{{ r.numberOfAdults }}A{% if r.numberOfChildren > 0 %} + {{ r.numberOfChildren }}C{% endif %}</p>
+                                    <p class="mb-0 fw-bold"><i class="fa-solid fa-tag me-2 text-muted"></i>&euro;{{ r.totalPrice|number_format(2) }}</p>
+                                </div>
+                                <div class="card-footer bg-white d-flex gap-2">
+                                    {% if r.score %}
+                                        <a href="{{ path('app_reservation_score', {id: r.id}) }}" class="btn btn-sm btn-dark">
+                                            <i class="fa-solid fa-ranking-star me-1"></i>Score
+                                        </a>
+                                    {% else %}
+                                        <a class="btn btn-sm btn-dark disabled"><i class="fa-solid fa-ranking-star me-1"></i>Score</a>
+                                    {% endif %}
+                                    <form method="post" action="{{ path('app_reservation_cancel', {id: r.id}) }}" onsubmit="return confirm('Cancel this reservation?')">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('cancel-' ~ r.id) }}">
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">
+                                            <i class="fa-solid fa-xmark me-1"></i>Cancel
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
             {% endif %}
 
@@ -87,39 +74,28 @@
             {% if past is empty %}
                 <div class="alert alert-light text-muted">No past reservations yet.</div>
             {% else %}
-                <div class="table-responsive">
-                    <table class="table table-hover align-middle">
-                        <thead class="table-light">
-                            <tr>
-                                <th>#</th>
-                                <th>Date</th>
-                                <th>Time</th>
-                                <th>Lane</th>
-                                <th>Players</th>
-                                <th>Total</th>
-                                <th>Status</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for r in past %}
-                                <tr class="{% if r.status == constant('App\\Entity\\Reservation::STATUS_CANCELLED') %}text-muted{% endif %}">
-                                    <td>{{ r.id }}</td>
-                                    <td>{{ r.startTime|date('d/m/Y') }}</td>
-                                    <td>{{ r.startTime|date('H:i') }} – {{ r.endTime|date('H:i') }}</td>
-                                    <td>{{ r.lane }}</td>
-                                    <td>{{ r.numberOfAdults }}A{% if r.numberOfChildren > 0 %} + {{ r.numberOfChildren }}C{% endif %}</td>
-                                    <td>&euro;{{ r.totalPrice|number_format(2) }}</td>
-                                    <td>
-                                        {% if r.status == constant('App\\Entity\\Reservation::STATUS_CANCELLED') %}
-                                            <span class="badge bg-danger">Cancelled</span>
-                                        {% elseif r.status == constant('App\\Entity\\Reservation::STATUS_CONFIRMED') %}
-                                            <span class="badge bg-success">Confirmed</span>
-                                        {% else %}
-                                            <span class="badge bg-secondary">{{ r.status|capitalize }}</span>
-                                        {% endif %}
-                                    </td>
-                                    <td>
+                <div class="row g-3">
+                    {% for r in past %}
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card shadow-sm h-100{% if r.status == constant('App\\Entity\\Reservation::STATUS_CANCELLED') %} opacity-50{% endif %}">
+                                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                                    <span class="fw-semibold"><i class="fa-solid fa-bowling-ball me-2 text-primary"></i>{{ r.lane }}</span>
+                                    {% if r.status == constant('App\\Entity\\Reservation::STATUS_CANCELLED') %}
+                                        <span class="badge bg-danger">Cancelled</span>
+                                    {% elseif r.status == constant('App\\Entity\\Reservation::STATUS_CONFIRMED') %}
+                                        <span class="badge bg-success">Confirmed</span>
+                                    {% else %}
+                                        <span class="badge bg-secondary">{{ r.status|capitalize }}</span>
+                                    {% endif %}
+                                </div>
+                                <div class="card-body">
+                                    <p class="mb-1"><i class="fa-regular fa-calendar-days me-2 text-muted"></i>{{ r.startTime|date('d/m/Y') }}</p>
+                                    <p class="mb-1"><i class="fa-regular fa-clock me-2 text-muted"></i>{{ r.startTime|date('H:i') }} – {{ r.endTime|date('H:i') }}</p>
+                                    <p class="mb-1"><i class="fa-solid fa-users me-2 text-muted"></i>{{ r.numberOfAdults }}A{% if r.numberOfChildren > 0 %} + {{ r.numberOfChildren }}C{% endif %}</p>
+                                    <p class="mb-0 fw-bold"><i class="fa-solid fa-tag me-2 text-muted"></i>&euro;{{ r.totalPrice|number_format(2) }}</p>
+                                </div>
+                                {% if r.status != constant('App\\Entity\\Reservation::STATUS_CANCELLED') %}
+                                    <div class="card-footer bg-white">
                                         {% if r.score %}
                                             <a href="{{ path('app_reservation_score', {id: r.id}) }}" class="btn btn-sm btn-dark">
                                                 <i class="fa-solid fa-ranking-star me-1"></i>Score
@@ -127,11 +103,11 @@
                                         {% else %}
                                             <a class="btn btn-sm btn-dark disabled"><i class="fa-solid fa-ranking-star me-1"></i>Score</a>
                                         {% endif %}
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
             {% endif %}
         </div>
