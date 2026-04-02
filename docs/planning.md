@@ -21,7 +21,7 @@
   - due: 2026-04-04
   - defaultExpanded: false
     ```md
-    Real-time lane availability on a calendar/grid (8h)
+    Real-time lane availability on a calendar/grid for 8 lanes (2 with bumpers) (8h)
     ```
 
 ### 3.9 My reservations list
@@ -45,7 +45,7 @@
   - due: 2026-04-03
   - defaultExpanded: false
     ```md
-    Book Magic Bowling session (Sat-Sun 22:00-00:00) with its own tariff (4h)
+    Book Magic Bowling disco-style session (Sat-Sun 22:00-00:00) (4h)
     ```
 
 ### 4.2 Magic Bowling tariff
@@ -53,7 +53,7 @@
   - due: 2026-04-03
   - defaultExpanded: false
     ```md
-    Apply Magic Bowling tariff for Sat-Sun 22:00-00:00 (2h)
+    Apply dedicated Magic Bowling tariff for Sat-Sun 22:00-00:00 (price TBD) (2h)
     ```
 
 ### 5.1 Employee: Today's reservations
@@ -145,7 +145,7 @@
   - due: 2026-03-31
   - defaultExpanded: false
     ```md
-    Homepage showing tariffs, packages, and opening hours (4h)
+    Homepage showing tariffs (Mon-Thu €24, Fri-Sun afternoon €28, Fri-Sun evening €33.50), snack/party packages, and opening hours (Mon-Fri 14:00-22:00, Sat-Sun 14:00-00:00) (4h)
     ```
 
 ### 2.2 Magic Bowling section on homepage
@@ -153,7 +153,7 @@
   - due: 2026-03-31
   - defaultExpanded: false
     ```md
-    Disco bowling experience section on homepage (1h)
+    Disco-style bowling experience section on homepage (Sat-Sun 22:00-00:00) (1h)
     ```
 
 ### 3.1 Create reservation
@@ -193,7 +193,7 @@
   - due: 2026-03-31
   - defaultExpanded: false
     ```md
-    Show total price (lane rate + packages) before confirming (2h)
+    Show total price (lane tariff + optional packages) before confirming (2h)
     ```
 
 ### 3.6 Reservation confirmation page
@@ -217,7 +217,7 @@
   - due: 2026-03-31
   - defaultExpanded: false
     ```md
-    Only allow bookings within opening hours (1h)
+    Only allow bookings within opening hours (Mon-Fri 14:00-22:00, Sat-Sun 14:00-00:00) (1h)
     ```
 
 ### 4.1 Tariff system
@@ -225,7 +225,7 @@
   - due: 2026-03-30
   - defaultExpanded: false
     ```md
-    Apply correct tariff: Mon-Thu €24, Fri-Sun afternoon €28, Fri-Sun evening €33.50 (3h)
+    Apply correct tariff per hour: Mon-Thu €24 (14:00-22:00), Fri-Sun €28 (14:00-18:00), Fri-Sun €33.50 (18:00-00:00) (3h)
     ```
 
 ### 6.1 Admin: Manage reservations
@@ -241,7 +241,7 @@
   - due: 2026-03-30
   - defaultExpanded: false
     ```md
-    CRUD lanes through EasyAdmin (2h)
+    CRUD lanes (8 total, 2 with bumpers) through EasyAdmin (2h)
     ```
 
 ### 6.3 Admin: Manage tariffs
@@ -257,7 +257,7 @@
   - due: 2026-03-30
   - defaultExpanded: false
     ```md
-    CRUD packages through EasyAdmin (2h)
+    CRUD snack and party packages through EasyAdmin (2h)
     ```
 
 ### 6.5 Admin: Manage users & roles
@@ -265,6 +265,5 @@
   - due: 2026-03-30
   - defaultExpanded: false
     ```md
-    Manage users and assign roles through EasyAdmin (2h)
+    Manage users and assign roles (user/employee/admin) through EasyAdmin (2h)
     ```
-
