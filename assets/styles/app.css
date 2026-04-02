@@ -63,3 +63,24 @@
 .border-secondary {
     border-color: var(--secondary) !important;
 }
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+
+main {
+    flex: 1;
+
+    background-image: url("/images/hero-bg.png");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

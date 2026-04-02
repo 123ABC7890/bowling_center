@@ -18,11 +18,3 @@ url("/fonts/icons/app-icons.woff?b7ed3973a276d86011d92fdcb9ad1d7a") format("woff
 .pa.pa-favicon:before {
     content: "\f101";
 }
-
-main {
-    background-image: url("/images/hero-bg.png");
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
