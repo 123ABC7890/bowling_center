@@ -1,28 +1,16 @@
 ## Todo
 
-### 1.4 Password reset
+### 7.2 Status change email
 
-  - due: 2026-04-03
+  - due: 2026-04-05
   - defaultExpanded: false
     ```md
-    Reset password via email to regain account access (3h)
+    Send email when reservation status changes via Doctrine event listener (3h)
     ```
 
-### 1.5 User profile
+## Doing
 
-  - due: 2026-04-03
-  - defaultExpanded: false
-    ```md
-    View and edit profile (name, phone) (2h)
-    ```
-
-### 2.3 Lane availability calendar
-
-  - due: 2026-04-04
-  - defaultExpanded: false
-    ```md
-    Real-time lane availability on a calendar/grid for 8 lanes (2 with bumpers) (8h)
-    ```
+## Done
 
 ### 3.9 My reservations list
 
@@ -53,7 +41,23 @@
   - due: 2026-04-03
   - defaultExpanded: false
     ```md
-    Apply dedicated Magic Bowling tariff for Sat-Sun 22:00-00:00 (price TBD) (2h)
+    Apply dedicated Magic Bowling tariff for Sat-Sun 22:00-00:00 (€38/hr) (2h)
+    ```
+
+### 1.4 Password reset
+
+  - due: 2026-04-03
+  - defaultExpanded: false
+    ```md
+    Reset password via email to regain account access (3h)
+    ```
+
+### 1.5 User profile
+
+  - due: 2026-04-03
+  - defaultExpanded: false
+    ```md
+    View and edit profile (name, phone) (2h)
     ```
 
 ### 5.1 Employee: Today's reservations
@@ -61,7 +65,7 @@
   - due: 2026-04-04
   - defaultExpanded: false
     ```md
-    View today's reservations in a dashboard (6h)
+    View today's reservations in EasyAdmin dashboard (6h)
     ```
 
 ### 5.2 Employee: Lane occupancy
@@ -69,7 +73,15 @@
   - due: 2026-04-04
   - defaultExpanded: false
     ```md
-    See which lanes are currently occupied and which are free (4h)
+    See which lanes are currently occupied and which are free in EasyAdmin dashboard (4h)
+    ```
+
+### 2.3 Lane availability calendar
+
+  - due: 2026-04-04
+  - defaultExpanded: false
+    ```md
+    Real-time lane availability on a calendar/grid for 8 lanes (2 with bumpers) (8h)
     ```
 
 ### 5.3 Employee: Change reservation status
@@ -77,7 +89,7 @@
   - due: 2026-04-05
   - defaultExpanded: false
     ```md
-    Change status of a reservation (pending/confirmed/cancelled) (3h)
+    Change status of a reservation (pending/confirmed/cancelled) via EasyAdmin CRUD (3h)
     ```
 
 ### 5.4 Employee: Walk-in reservation
@@ -85,7 +97,7 @@
   - due: 2026-04-05
   - defaultExpanded: false
     ```md
-    Create a walk-in reservation on behalf of a customer (3h)
+    Create a walk-in reservation on behalf of a customer via EasyAdmin CRUD (3h)
     ```
 
 ### 6.6 Admin: Dashboard statistics
@@ -93,7 +105,7 @@
   - due: 2026-04-05
   - defaultExpanded: false
     ```md
-    Dashboard with total reservations, revenue, and occupancy stats (6h)
+    Dashboard with total reservations, revenue, and occupancy stats in EasyAdmin (6h)
     ```
 
 ### 7.1 Email confirmation
@@ -103,18 +115,6 @@
     ```md
     Send email confirmation after making a reservation (4h)
     ```
-
-### 7.2 Status change email
-
-  - due: 2026-04-05
-  - defaultExpanded: false
-    ```md
-    Send email when reservation status changes (3h)
-    ```
-
-## Doing
-
-## Done
 
 ### 1.1 User registration
 
