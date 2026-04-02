@@ -200,7 +200,7 @@ class ReservationController extends AbstractController
                     $emailMsg = (new Email())
                         ->from('noreply@bowlingcenter-brooklyn.nl')
                         ->to($recipientEmail)
-                        ->subject('Reservation confirmation — Bowlingcenter Brooklyn')
+                        ->subject('Reservation confirmation - Bowlingcenter Brooklyn')
                         ->html($this->renderView('email/reservation_confirmation.html.twig', [
                             'reservation' => $reservation,
                         ]));

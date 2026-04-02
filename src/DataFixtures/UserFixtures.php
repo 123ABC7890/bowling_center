@@ -21,7 +21,7 @@ class UserFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        // Admin — credentials from .env
+        // Admin - credentials from .env
         $admin = new User();
         $admin->email = $this->adminEmail;
         $admin->roles = ['ROLE_ADMIN'];

@@ -115,7 +115,7 @@ class ReservationType extends AbstractType
                         ->orderBy('p.price', 'ASC');
                 },
                 'choice_label' => function (Package $package): string {
-                    return $package->name . ' — €' . number_format((float) $package->price, 2);
+                    return $package->name . ' - €' . number_format((float) $package->price, 2);
                 },
             ])
             ->add('partyPackage', EntityType::class, [
@@ -129,7 +129,7 @@ class ReservationType extends AbstractType
                         ->orderBy('p.price', 'ASC');
                 },
                 'choice_label' => function (Package $package): string {
-                    return $package->name . ' — €' . number_format((float) $package->price, 2);
+                    return $package->name . ' - €' . number_format((float) $package->price, 2);
                 },
             ]);
     }

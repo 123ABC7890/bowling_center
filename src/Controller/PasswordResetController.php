@@ -42,7 +42,7 @@ class PasswordResetController extends AbstractController
                 $emailMessage = (new Email())
                     ->from('noreply@bowlingcenter-brooklyn.nl')
                     ->to($user->email)
-                    ->subject('Reset your password — Bowlingcenter Brooklyn')
+                    ->subject('Reset your password - Bowlingcenter Brooklyn')
                     ->html($this->renderView('email/password_reset.html.twig', [
                         'user' => $user,
                         'resetUrl' => $resetUrl,

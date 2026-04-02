@@ -1,4 +1,4 @@
-# User Stories — Bowlingcenter Brooklyn
+# User Stories - Bowlingcenter Brooklyn
 
 > Time estimates are rough development hours (design + code + basic testing).
 

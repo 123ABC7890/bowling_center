@@ -3,7 +3,7 @@
 {% block page_title %}Dashboard{% endblock %}
 
 {% block content_body %}
-    {# Lane Occupancy Grid — visible to all #}
+    {# Lane Occupancy Grid - visible to all #}
     <div class="row g-3 mb-4">
         {% for lane in allLanes %}
             {% set occupied = occupiedLaneIds[lane.id] is defined ? occupiedLaneIds[lane.id] : null %}
@@ -113,7 +113,7 @@
         </div>
     {% endif %}
 
-    {# Today's Reservations — visible to all #}
+    {# Today's Reservations - visible to all #}
     <div class="card">
         <div class="card-header">
             <i class="fa fa-calendar-day me-2"></i>Today's Reservations ({{ todayReservations|length }})
