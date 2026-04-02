@@ -39,7 +39,7 @@ class UserFixtures extends Fixture
         $employee->firstName = 'Sophie';
         $employee->lastName = 'Bakker';
         $employee->phone = '+31 6 23456789';
-        $employee->password = $this->passwordHasher->hashPassword($employee, 'password');
+        $employee->password = $this->passwordHasher->hashPassword($employee, $this->adminPassword);
         $manager->persist($employee);
         $this->addReference(self::USER_EMPLOYEE, $employee, User::class);
 
@@ -50,7 +50,7 @@ class UserFixtures extends Fixture
         $customer->firstName = 'Pieter';
         $customer->lastName = 'Jansen';
         $customer->phone = '+31 6 34567890';
-        $customer->password = $this->passwordHasher->hashPassword($customer, 'password');
+        $customer->password = $this->passwordHasher->hashPassword($customer, $this->adminPassword);
         $manager->persist($customer);
         $this->addReference(self::USER_CUSTOMER, $customer, User::class);
 
