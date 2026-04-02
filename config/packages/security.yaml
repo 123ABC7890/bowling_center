@@ -29,8 +29,7 @@ security:
         ROLE_ADMIN: ROLE_EMPLOYEE
 
     access_control:
-        - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/employee, roles: ROLE_EMPLOYEE }
+        - { path: ^/admin, roles: ROLE_EMPLOYEE }
 
 when@test:
     security:

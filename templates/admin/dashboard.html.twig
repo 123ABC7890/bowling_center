@@ -1,0 +1,164 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block page_title %}Dashboard{% endblock %}
+
+{% block content_body %}
+    {# Lane Occupancy Grid — visible to all #}
+    <div class="row g-3 mb-4">
+        {% for lane in allLanes %}
+            {% set occupied = occupiedLaneIds[lane.id] is defined ? occupiedLaneIds[lane.id] : null %}
+            <div class="col-md-3 col-sm-6">
+                <div class="card text-center {{ occupied ? 'border-danger' : 'border-success' }}">
+                    <div class="card-body py-3">
+                        <h5 class="mb-1">{{ lane }}</h5>
+                        {% if occupied %}
+                            <span class="badge bg-danger mb-2">Occupied</span>
+                            <p class="small mb-0 text-muted">
+                                {{ occupied.startTime|date('H:i') }} – {{ occupied.endTime|date('H:i') }}<br>
+                                {{ occupied.user }}
+                            </p>
+                        {% else %}
+                            <span class="badge bg-success mb-2">Available</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    {# Admin-only statistics #}
+    {% if isAdmin %}
+        <div class="row g-4 mb-4">
+            <div class="col-md-3">
+                <div class="card text-center border-primary">
+                    <div class="card-body">
+                        <i class="fa fa-calendar-check fa-2x text-primary mb-2"></i>
+                        <h3 class="mb-0">{{ totalReservations }}</h3>
+                        <p class="text-muted mb-0">Total Reservations</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center border-success">
+                    <div class="card-body">
+                        <i class="fa fa-euro-sign fa-2x text-success mb-2"></i>
+                        <h3 class="mb-0">&euro;{{ totalRevenue|number_format(2) }}</h3>
+                        <p class="text-muted mb-0">Total Revenue</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center border-info">
+                    <div class="card-body">
+                        <i class="fa fa-calendar-day fa-2x text-info mb-2"></i>
+                        <h3 class="mb-0">{{ todayReservations|length }}</h3>
+                        <p class="text-muted mb-0">Today's Reservations</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center border-warning">
+                    <div class="card-body">
+                        <i class="fa fa-bowling-ball fa-2x text-warning mb-2"></i>
+                        <h3 class="mb-0">{{ occupancyNow }} / {{ totalLanes }}</h3>
+                        <p class="text-muted mb-0">Lanes Occupied Now</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 mb-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header"><i class="fa fa-chart-pie me-2"></i>By Status</div>
+                    <div class="card-body">
+                        <table class="table table-sm mb-0">
+                            <tr>
+                                <td><span class="badge bg-success">Confirmed</span></td>
+                                <td class="text-end fw-bold">{{ confirmedCount }}</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge bg-warning text-dark">Pending</span></td>
+                                <td class="text-end fw-bold">{{ pendingCount }}</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge bg-danger">Cancelled</span></td>
+                                <td class="text-end fw-bold">{{ cancelledCount }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header"><i class="fa fa-info-circle me-2"></i>Quick Stats</div>
+                    <div class="card-body">
+                        <table class="table table-sm mb-0">
+                            <tr>
+                                <td>Occupancy Rate (now)</td>
+                                <td class="text-end fw-bold">{{ totalLanes > 0 ? ((occupancyNow / totalLanes) * 100)|number_format(0) : 0 }}%</td>
+                            </tr>
+                            <tr>
+                                <td>Average Revenue per Reservation</td>
+                                <td class="text-end fw-bold">&euro;{{ totalReservations > 0 ? (totalRevenue / totalReservations)|number_format(2) : '0.00' }}</td>
+                            </tr>
+                            <tr>
+                                <td>Cancellation Rate</td>
+                                <td class="text-end fw-bold">{{ totalReservations > 0 ? ((cancelledCount / totalReservations) * 100)|number_format(1) : 0 }}%</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {# Today's Reservations — visible to all #}
+    <div class="card">
+        <div class="card-header">
+            <i class="fa fa-calendar-day me-2"></i>Today's Reservations ({{ todayReservations|length }})
+        </div>
+        <div class="card-body p-0">
+            {% if todayReservations is empty %}
+                <div class="p-4 text-center text-muted">No reservations for today.</div>
+            {% else %}
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0 align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Time</th>
+                                <th>Lane</th>
+                                <th>Customer</th>
+                                <th>Players</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for r in todayReservations %}
+                                <tr class="{% if r.status == 'cancelled' %}text-muted{% endif %}">
+                                    <td>{{ r.id }}</td>
+                                    <td>{{ r.startTime|date('H:i') }} – {{ r.endTime|date('H:i') }}</td>
+                                    <td>{{ r.lane }}</td>
+                                    <td>{{ r.user }}</td>
+                                    <td>{{ r.numberOfAdults }}A{% if r.numberOfChildren > 0 %} + {{ r.numberOfChildren }}C{% endif %}</td>
+                                    <td>&euro;{{ r.totalPrice|number_format(2) }}</td>
+                                    <td>
+                                        {% if r.status == 'confirmed' %}
+                                            <span class="badge bg-success">Confirmed</span>
+                                        {% elseif r.status == 'pending' %}
+                                            <span class="badge bg-warning text-dark">Pending</span>
+                                        {% elseif r.status == 'cancelled' %}
+                                            <span class="badge bg-danger">Cancelled</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

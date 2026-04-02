@@ -3,6 +3,8 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Reservation;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -24,6 +26,13 @@ class ReservationCrudController extends AbstractCrudController
             ->setEntityLabelInSingular('Reservation')
             ->setEntityLabelInPlural('Reservations')
             ->setDefaultSort(['startTime' => 'DESC']);
+    }
+
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->setPermission(Action::DELETE, 'ROLE_ADMIN')
+            ->setPermission(Action::BATCH_DELETE, 'ROLE_ADMIN');
     }
 
     public function configureFields(string $pageName): iterable

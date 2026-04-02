@@ -1,0 +1,122 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Reservations — Bowlingcenter Brooklyn{% endblock %}
+
+{% block body %}
+    <section class="py-5">
+        <div class="container" style="max-width: 900px;">
+            <h1 class="text-center mb-2"><i class="fa-solid fa-calendar-check me-2 text-primary"></i>My Reservations</h1>
+            <p class="text-center text-muted mb-4">View your upcoming and past reservations.</p>
+
+            {% for flash in app.flashes('success') %}
+                <div class="alert alert-success"><i class="fa-solid fa-circle-check me-2"></i>{{ flash }}</div>
+            {% endfor %}
+            {% for flash in app.flashes('danger') %}
+                <div class="alert alert-danger"><i class="fa-solid fa-circle-exclamation me-2"></i>{{ flash }}</div>
+            {% endfor %}
+
+            {% set upcoming = [] %}
+            {% set past = [] %}
+            {% for r in reservations %}
+                {% if r.startTime > now and r.status != 'cancelled' %}
+                    {% set upcoming = upcoming|merge([r]) %}
+                {% else %}
+                    {% set past = past|merge([r]) %}
+                {% endif %}
+            {% endfor %}
+
+            <h4 class="mt-4 mb-3"><i class="fa-solid fa-clock me-2"></i>Upcoming</h4>
+            {% if upcoming is empty %}
+                <div class="alert alert-info">No upcoming reservations. <a href="{{ path('app_reservation_new') }}">Book a lane now!</a></div>
+            {% else %}
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead class="table-primary">
+                            <tr>
+                                <th>#</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Lane</th>
+                                <th>Players</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for r in upcoming %}
+                                <tr>
+                                    <td>{{ r.id }}</td>
+                                    <td>{{ r.startTime|date('d/m/Y') }}</td>
+                                    <td>{{ r.startTime|date('H:i') }} – {{ r.endTime|date('H:i') }}</td>
+                                    <td>{{ r.lane }}</td>
+                                    <td>{{ r.numberOfAdults }}A{% if r.numberOfChildren > 0 %} + {{ r.numberOfChildren }}C{% endif %}</td>
+                                    <td>&euro;{{ r.totalPrice|number_format(2) }}</td>
+                                    <td>
+                                        {% if r.status == 'confirmed' %}
+                                            <span class="badge bg-success">Confirmed</span>
+                                        {% elseif r.status == 'pending' %}
+                                            <span class="badge bg-warning text-dark">Pending</span>
+                                        {% else %}
+                                            <span class="badge bg-secondary">{{ r.status|capitalize }}</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <form method="post" action="{{ path('app_reservation_cancel', {id: r.id}) }}" onsubmit="return confirm('Cancel this reservation?')">
+                                            <input type="hidden" name="_token" value="{{ csrf_token('cancel-' ~ r.id) }}">
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                <i class="fa-solid fa-xmark me-1"></i>Cancel
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% endif %}
+
+            <h4 class="mt-5 mb-3"><i class="fa-solid fa-history me-2"></i>Past & Cancelled</h4>
+            {% if past is empty %}
+                <div class="alert alert-light text-muted">No past reservations yet.</div>
+            {% else %}
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Lane</th>
+                                <th>Players</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for r in past %}
+                                <tr class="{% if r.status == 'cancelled' %}text-muted{% endif %}">
+                                    <td>{{ r.id }}</td>
+                                    <td>{{ r.startTime|date('d/m/Y') }}</td>
+                                    <td>{{ r.startTime|date('H:i') }} – {{ r.endTime|date('H:i') }}</td>
+                                    <td>{{ r.lane }}</td>
+                                    <td>{{ r.numberOfAdults }}A{% if r.numberOfChildren > 0 %} + {{ r.numberOfChildren }}C{% endif %}</td>
+                                    <td>&euro;{{ r.totalPrice|number_format(2) }}</td>
+                                    <td>
+                                        {% if r.status == 'cancelled' %}
+                                            <span class="badge bg-danger">Cancelled</span>
+                                        {% elseif r.status == 'confirmed' %}
+                                            <span class="badge bg-success">Confirmed</span>
+                                        {% else %}
+                                            <span class="badge bg-secondary">{{ r.status|capitalize }}</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

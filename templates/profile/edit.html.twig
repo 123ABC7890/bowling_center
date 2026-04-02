@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Profile — Bowlingcenter Brooklyn{% endblock %}
+
+{% block body %}
+    <section class="py-5">
+        <div class="container" style="max-width: 520px;">
+            <h1 class="text-center mb-2"><i class="fa-solid fa-user me-2 text-primary"></i>My Profile</h1>
+            <p class="text-center text-muted mb-4">Update your personal details.</p>
+
+            {% for flash in app.flashes('success') %}
+                <div class="alert alert-success"><i class="fa-solid fa-circle-check me-2"></i>{{ flash }}</div>
+            {% endfor %}
+
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <i class="fa-solid fa-id-card me-2"></i>Personal Information
+                </div>
+                <div class="card-body">
+                    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Email</label>
+                        <input type="email" class="form-control" value="{{ app.user.email }}" disabled>
+                        <small class="text-muted">Email cannot be changed.</small>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">First Name</label>
+                            {{ form_widget(form.firstName, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.firstName) }}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Last Name</label>
+                            {{ form_widget(form.lastName, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.lastName) }}
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Phone</label>
+                        {{ form_widget(form.phone, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.phone) }}
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa-solid fa-floppy-disk me-2"></i>Save Changes
+                        </button>
+                    </div>
+
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

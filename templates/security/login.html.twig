@@ -37,6 +37,10 @@
 
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
+                        <div class="text-end mb-2">
+                            <a href="{{ path('app_forgot_password') }}" class="text-muted small">Forgot password?</a>
+                        </div>
+
                         <div class="d-grid mt-4">
                             <button type="submit" class="btn btn-primary btn-lg">
                                 <i class="fa-solid fa-right-to-bracket me-2"></i>Log In

@@ -1,0 +1,52 @@
+<h2>Reservation Confirmed — Bowlingcenter Brooklyn</h2>
+
+<p>Dear {{ reservation.user.firstName }},</p>
+
+<p>Your reservation has been placed successfully. Here are the details:</p>
+
+<table style="border-collapse: collapse; width: 100%; max-width: 500px;">
+    <tr>
+        <td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">Reservation #</td>
+        <td style="padding: 8px; border-bottom: 1px solid #eee;">{{ reservation.id }}</td>
+    </tr>
+    <tr>
+        <td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">Lane</td>
+        <td style="padding: 8px; border-bottom: 1px solid #eee;">{{ reservation.lane }}</td>
+    </tr>
+    <tr>
+        <td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">Date</td>
+        <td style="padding: 8px; border-bottom: 1px solid #eee;">{{ reservation.startTime|date('l, d F Y') }}</td>
+    </tr>
+    <tr>
+        <td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">Time</td>
+        <td style="padding: 8px; border-bottom: 1px solid #eee;">{{ reservation.startTime|date('H:i') }} – {{ reservation.endTime|date('H:i') }}</td>
+    </tr>
+    <tr>
+        <td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">Players</td>
+        <td style="padding: 8px; border-bottom: 1px solid #eee;">{{ reservation.numberOfAdults }} adult{{ reservation.numberOfAdults != 1 ? 's' : '' }}{% if reservation.numberOfChildren > 0 %}, {{ reservation.numberOfChildren }} child{{ reservation.numberOfChildren != 1 ? 'ren' : '' }}{% endif %}</td>
+    </tr>
+    <tr>
+        <td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">Rate</td>
+        <td style="padding: 8px; border-bottom: 1px solid #eee;">&euro;{{ reservation.appliedRate|number_format(2) }}/hr ({{ reservation.tariff.name }})</td>
+    </tr>
+    {% if reservation.snackPackage %}
+    <tr>
+        <td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">Snack Package</td>
+        <td style="padding: 8px; border-bottom: 1px solid #eee;">{{ reservation.snackPackage.name }} (&euro;{{ reservation.snackPackage.price|number_format(2) }})</td>
+    </tr>
+    {% endif %}
+    {% if reservation.partyPackage %}
+    <tr>
+        <td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">Party Package</td>
+        <td style="padding: 8px; border-bottom: 1px solid #eee;">{{ reservation.partyPackage.name }} (&euro;{{ reservation.partyPackage.price|number_format(2) }})</td>
+    </tr>
+    {% endif %}
+    <tr>
+        <td style="padding: 8px; font-weight: bold; font-size: 1.2em;">Total</td>
+        <td style="padding: 8px; font-weight: bold; font-size: 1.2em;">&euro;{{ reservation.totalPrice|number_format(2) }}</td>
+    </tr>
+</table>
+
+<p style="margin-top: 20px;">Your reservation status is: <strong>{{ reservation.status|capitalize }}</strong></p>
+
+<p>Thank you for choosing Bowlingcenter Brooklyn!</p>

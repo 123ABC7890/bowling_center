@@ -12,6 +12,7 @@ class TariffFixtures extends Fixture
     public const TARIFF_MONTHU = 'tariff-monthu';
     public const TARIFF_FRISUN_AFTERNOON = 'tariff-frisun-afternoon';
     public const TARIFF_FRISUN_EVENING = 'tariff-frisun-evening';
+    public const TARIFF_MAGIC_BOWLING = 'tariff-magic-bowling';
 
     public function load(ObjectManager $manager): void
     {
@@ -39,6 +40,14 @@ class TariffFixtures extends Fixture
                 'start' => '18:00',
                 'end' => '00:00',
                 'price' => '33.50',
+            ],
+            [
+                'ref' => self::TARIFF_MAGIC_BOWLING,
+                'name' => 'Magic Bowling',
+                'dayRange' => DayRange::FriSun,
+                'start' => '22:00',
+                'end' => '00:00',
+                'price' => '38.00',
             ],
         ];
 

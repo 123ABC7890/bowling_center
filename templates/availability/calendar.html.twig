@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lane Availability — Bowlingcenter Brooklyn{% endblock %}
+
+{% block body %}
+    <section class="py-5">
+        <div class="container">
+            <h1 class="text-center mb-2"><i class="fa-solid fa-calendar-days me-2 text-primary"></i>Lane Availability</h1>
+            <p class="text-center text-muted mb-4">See which lanes are available for booking.</p>
+
+            <div class="d-flex justify-content-center align-items-center mb-4 gap-3">
+                <a href="{{ path('app_availability', {date: prevDate}) }}" class="btn btn-outline-primary">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </a>
+                <h4 class="mb-0">{{ date|date('l, d F Y') }}</h4>
+                <a href="{{ path('app_availability', {date: nextDate}) }}" class="btn btn-outline-primary">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </a>
+            </div>
+
+            <div class="card shadow-sm">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-bordered mb-0 text-center align-middle" style="table-layout: fixed;">
+                            <thead class="table-primary">
+                                <tr>
+                                    <th style="width: 130px;">Lane</th>
+                                    {% for hour in hours %}
+                                        <th>{{ hour }}:00</th>
+                                    {% endfor %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for lane in lanes %}
+                                    <tr>
+                                        <td class="fw-semibold text-start">{{ lane }}</td>
+                                        {% for hour in hours %}
+                                            {% set reservation = grid[lane.id][hour] %}
+                                            {% if reservation %}
+                                                <td class="bg-danger bg-opacity-25 text-danger" title="Reserved: {{ reservation.user }} ({{ reservation.startTime|date('H:i') }}-{{ reservation.endTime|date('H:i') }})">
+                                                    <i class="fa-solid fa-lock fa-sm"></i>
+                                                </td>
+                                            {% else %}
+                                                <td class="bg-success bg-opacity-10 text-success">
+                                                    <i class="fa-solid fa-check fa-sm"></i>
+                                                </td>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center gap-4 mt-3">
+                <span><span class="badge bg-success bg-opacity-25 text-success"><i class="fa-solid fa-check"></i></span> Available</span>
+                <span><span class="badge bg-danger bg-opacity-25 text-danger"><i class="fa-solid fa-lock"></i></span> Reserved</span>
+            </div>
+        </div>
+    </section>
+{% endblock %}

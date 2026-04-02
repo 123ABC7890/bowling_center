@@ -12,11 +12,56 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class ReservationController extends AbstractController
 {
+    #[Route('/my-reservations', name: 'app_my_reservations')]
+    #[IsGranted('ROLE_USER')]
+    public function list(ReservationRepository $reservationRepository): Response
+    {
+        $reservations = $reservationRepository->findByUser($this->getUser());
+        $now = new \DateTime();
+
+        return $this->render('reservation/list.html.twig', [
+            'reservations' => $reservations,
+            'now' => $now,
+        ]);
+    }
+
+    #[Route('/reservation/{id}/cancel', name: 'app_reservation_cancel', methods: ['POST'])]
+    #[IsGranted('ROLE_USER')]
+    public function cancel(Reservation $reservation, EntityManagerInterface $em, Request $request): Response
+    {
+        if ($reservation->user !== $this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
+
+        if (!$this->isCsrfTokenValid('cancel-' . $reservation->getId(), $request->request->get('_token'))) {
+            throw $this->createAccessDeniedException('Invalid CSRF token.');
+        }
+
+        if ($reservation->status === 'cancelled') {
+            $this->addFlash('danger', 'This reservation is already cancelled.');
+            return $this->redirectToRoute('app_my_reservations');
+        }
+
+        if ($reservation->startTime < new \DateTime()) {
+            $this->addFlash('danger', 'Cannot cancel a past reservation.');
+            return $this->redirectToRoute('app_my_reservations');
+        }
+
+        $reservation->status = 'cancelled';
+        $em->flush();
+
+        $this->addFlash('success', 'Your reservation has been cancelled.');
+        return $this->redirectToRoute('app_my_reservations');
+    }
+
+
     #[Route('/reservation/new', name: 'app_reservation_new')]
     #[IsGranted('ROLE_USER')]
     public function new(
@@ -24,6 +69,7 @@ class ReservationController extends AbstractController
         EntityManagerInterface $em,
         TariffRepository $tariffRepository,
         ReservationRepository $reservationRepository,
+        MailerInterface $mailer,
     ): Response {
         $reservation = new Reservation();
         $form = $this->createForm(ReservationType::class, $reservation);
@@ -104,6 +150,21 @@ class ReservationController extends AbstractController
 
             $em->persist($reservation);
             $em->flush();
+
+            // Send confirmation email
+            try {
+                $email = (new Email())
+                    ->from('noreply@bowlingcenter-brooklyn.nl')
+                    ->to($this->getUser()->getUserIdentifier())
+                    ->subject('Reservation confirmation — Bowlingcenter Brooklyn')
+                    ->html($this->renderView('email/reservation_confirmation.html.twig', [
+                        'reservation' => $reservation,
+                    ]));
+
+                $mailer->send($email);
+            } catch (\Exception $e) {
+                // Email sending should not block reservation
+            }
 
             $this->addFlash('success', 'Your reservation has been placed!');
             return $this->redirectToRoute('app_reservation_confirmation', ['id' => $reservation->getId()]);
