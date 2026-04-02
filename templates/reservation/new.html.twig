@@ -5,8 +5,8 @@
 {% block body %}
     <section class="py-5">
         <div class="container">
-            <h1 class="text-center mb-2"><i class="fa-solid fa-bowling-ball me-2 text-primary"></i>Reserve a Lane</h1>
-            <p class="text-center text-muted mb-4">Fill in your details, pick a date, and choose your lane.</p>
+            <h1 class="text-center mb-2 text-white"><i class="fa-solid fa-bowling-ball me-2 text-primary"></i>Reserve a Lane</h1>
+            <p class="text-center mb-4 text-white">Fill in your details, pick a date, and choose your lane.</p>
 
             {% for flash in app.flashes('danger') %}
                 <div class="alert alert-danger"><i class="fa-solid fa-circle-exclamation me-2"></i>{{ flash }}</div>
