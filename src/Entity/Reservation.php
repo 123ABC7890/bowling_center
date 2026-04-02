@@ -11,6 +11,10 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\HasLifecycleCallbacks]
 class Reservation
 {
+    public const STATUS_CONFIRMED = 'confirmed';
+    public const STATUS_PENDING = 'pending';
+    public const STATUS_CANCELLED = 'cancelled';
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -62,7 +66,7 @@ class Reservation
     public ?string $totalPrice = null;
 
     #[ORM\Column(length: 20)]
-    public string $status = 'pending';
+    public string $status = self::STATUS_CONFIRMED;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     public ?\DateTimeInterface $createdAt = null;

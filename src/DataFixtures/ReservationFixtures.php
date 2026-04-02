@@ -25,7 +25,7 @@ class ReservationFixtures extends Fixture implements DependentFixtureInterface
                 'snack' => null,
                 'party' => null,
                 'totalPrice' => '48.00',
-                'status' => 'confirmed',
+                'status' => Reservation::STATUS_CONFIRMED,
             ],
             // Weekend afternoon with basic snack package
             [
@@ -40,7 +40,7 @@ class ReservationFixtures extends Fixture implements DependentFixtureInterface
                 'snack' => PackageFixtures::SNACK_BASIC,
                 'party' => null,
                 'totalPrice' => '71.00',
-                'status' => 'confirmed',
+                'status' => Reservation::STATUS_CONFIRMED,
             ],
             // Weekend evening with luxury snack
             [
@@ -55,7 +55,7 @@ class ReservationFixtures extends Fixture implements DependentFixtureInterface
                 'snack' => PackageFixtures::SNACK_LUXURY,
                 'party' => null,
                 'totalPrice' => '102.00',
-                'status' => 'pending',
+                'status' => Reservation::STATUS_PENDING,
             ],
             // Children's party on bumper lane
             [
@@ -70,7 +70,7 @@ class ReservationFixtures extends Fixture implements DependentFixtureInterface
                 'snack' => PackageFixtures::SNACK_BASIC,
                 'party' => PackageFixtures::PARTY_CHILDREN,
                 'totalPrice' => '146.00',
-                'status' => 'confirmed',
+                'status' => Reservation::STATUS_CONFIRMED,
             ],
             // Bachelor party
             [
@@ -85,7 +85,7 @@ class ReservationFixtures extends Fixture implements DependentFixtureInterface
                 'snack' => PackageFixtures::SNACK_LUXURY,
                 'party' => PackageFixtures::PARTY_BACHELOR,
                 'totalPrice' => '255.50',
-                'status' => 'confirmed',
+                'status' => Reservation::STATUS_CONFIRMED,
             ],
             // Cancelled reservation
             [
@@ -100,7 +100,7 @@ class ReservationFixtures extends Fixture implements DependentFixtureInterface
                 'snack' => null,
                 'party' => null,
                 'totalPrice' => '48.00',
-                'status' => 'cancelled',
+                'status' => Reservation::STATUS_CANCELLED,
             ],
         ];
 

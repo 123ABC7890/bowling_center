@@ -137,7 +137,7 @@
                         </thead>
                         <tbody>
                             {% for r in todayReservations %}
-                                <tr class="{% if r.status == 'cancelled' %}text-muted{% endif %}">
+                                <tr class="{% if r.status == constant('App\\Entity\\Reservation::STATUS_CANCELLED') %}text-muted{% endif %}">
                                     <td>{{ r.id }}</td>
                                     <td>{{ r.startTime|date('H:i') }} – {{ r.endTime|date('H:i') }}</td>
                                     <td>{{ r.lane }}</td>
@@ -145,11 +145,11 @@
                                     <td>{{ r.numberOfAdults }}A{% if r.numberOfChildren > 0 %} + {{ r.numberOfChildren }}C{% endif %}</td>
                                     <td>&euro;{{ r.totalPrice|number_format(2) }}</td>
                                     <td>
-                                        {% if r.status == 'confirmed' %}
+                                        {% if r.status == constant('App\\Entity\\Reservation::STATUS_CONFIRMED') %}
                                             <span class="badge bg-success">Confirmed</span>
-                                        {% elseif r.status == 'pending' %}
+                                        {% elseif r.status == constant('App\\Entity\\Reservation::STATUS_PENDING') %}
                                             <span class="badge bg-warning text-dark">Pending</span>
-                                        {% elseif r.status == 'cancelled' %}
+                                        {% elseif r.status == constant('App\\Entity\\Reservation::STATUS_CANCELLED') %}
                                             <span class="badge bg-danger">Cancelled</span>
                                         {% endif %}
                                     </td>

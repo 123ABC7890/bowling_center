@@ -46,9 +46,9 @@ class DashboardController extends AbstractDashboardController
 
         if ($this->isGranted('ROLE_ADMIN')) {
             $data['totalReservations'] = $this->reservationRepository->countTotal();
-            $data['confirmedCount'] = $this->reservationRepository->countByStatus('confirmed');
-            $data['pendingCount'] = $this->reservationRepository->countByStatus('pending');
-            $data['cancelledCount'] = $this->reservationRepository->countByStatus('cancelled');
+            $data['confirmedCount'] = $this->reservationRepository->countByStatus(Reservation::STATUS_CONFIRMED);
+            $data['pendingCount'] = $this->reservationRepository->countByStatus(Reservation::STATUS_PENDING);
+            $data['cancelledCount'] = $this->reservationRepository->countByStatus(Reservation::STATUS_CANCELLED);
             $data['totalRevenue'] = $this->reservationRepository->totalRevenue();
         }
 

@@ -55,9 +55,9 @@ class ReservationCrudController extends AbstractCrudController
         yield AssociationField::new('partyPackage');
         yield MoneyField::new('totalPrice')->setCurrency('EUR')->setStoredAsCents(false);
         yield ChoiceField::new('status')->setChoices([
-            'Pending' => 'pending',
-            'Confirmed' => 'confirmed',
-            'Cancelled' => 'cancelled',
+            'Pending' => Reservation::STATUS_PENDING,
+            'Confirmed' => Reservation::STATUS_CONFIRMED,
+            'Cancelled' => Reservation::STATUS_CANCELLED,
         ]);
         yield DateTimeField::new('createdAt')->hideOnForm();
         yield DateTimeField::new('updatedAt')->hideOnForm();

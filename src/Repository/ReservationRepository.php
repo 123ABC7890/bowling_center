@@ -60,7 +60,7 @@ class ReservationRepository extends ServiceEntityRepository
             ->andWhere('r.endTime > :now')
             ->andWhere('r.status != :cancelled')
             ->setParameter('now', $now)
-            ->setParameter('cancelled', 'cancelled')
+            ->setParameter('cancelled', Reservation::STATUS_CANCELLED)
             ->orderBy('r.lane', 'ASC')
             ->getQuery()
             ->getResult();
@@ -77,7 +77,7 @@ class ReservationRepository extends ServiceEntityRepository
             ->andWhere('r.status != :cancelled')
             ->setParameter('start', $start)
             ->setParameter('end', $end)
-            ->setParameter('cancelled', 'cancelled')
+            ->setParameter('cancelled', Reservation::STATUS_CANCELLED)
             ->orderBy('r.startTime', 'ASC')
             ->getQuery()
             ->getResult();
@@ -98,7 +98,7 @@ class ReservationRepository extends ServiceEntityRepository
         return (float) $this->createQueryBuilder('r')
             ->select('SUM(r.totalPrice)')
             ->where('r.status != :cancelled')
-            ->setParameter('cancelled', 'cancelled')
+            ->setParameter('cancelled', Reservation::STATUS_CANCELLED)
             ->getQuery()
             ->getSingleScalarResult();
     }

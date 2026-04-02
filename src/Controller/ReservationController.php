@@ -163,7 +163,7 @@ class ReservationController extends AbstractController
                 ->andWhere('r.startTime < :endTime')
                 ->andWhere('r.endTime > :startTime')
                 ->setParameter('lane', $reservation->lane)
-                ->setParameter('cancelled', 'cancelled')
+                ->setParameter('cancelled', Reservation::STATUS_CANCELLED)
                 ->setParameter('startTime', $startTime)
                 ->setParameter('endTime', $endTime)
                 ->setMaxResults(1)
@@ -266,7 +266,7 @@ class ReservationController extends AbstractController
             throw $this->createAccessDeniedException('Invalid CSRF token.');
         }
 
-        if ($reservation->status === 'cancelled') {
+        if ($reservation->status === Reservation::STATUS_CANCELLED) {
             $this->addFlash('danger', 'This reservation is already cancelled.');
             return $this->redirectToRoute('app_my_reservations');
         }
@@ -276,7 +276,7 @@ class ReservationController extends AbstractController
             return $this->redirectToRoute('app_my_reservations');
         }
 
-        $reservation->status = 'cancelled';
+        $reservation->status = Reservation::STATUS_CANCELLED;
         $em->flush();
 
         $this->addFlash('success', 'Your reservation has been cancelled.');
