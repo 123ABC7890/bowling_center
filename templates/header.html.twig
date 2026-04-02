@@ -1,47 +1,37 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
 	<a class="navbar-brand d-flex align-items-center p-4" href="/">
-		<i class="pa pa-favicon text-primary me-2 fs-4"></i>Bowlingcenter Brooklyn</a>
+		<i class="pa pa-favicon text-primary me-2 fs-4"></i>Bowlingcenter Brooklyn
+	</a>
 	<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
 		<span class="navbar-toggler-icon"></span>
 	</button>
 	<div class="collapse navbar-collapse" id="navbarNav">
-		<ul class="navbar-nav me-auto"> {% block navbar_links %}{% endblock %}
+		<ul class="navbar-nav me-auto">
+			{% block navbar_links %}{% endblock %}
 			<li class="nav-item">
 				<a class="nav-link" href="{{ path('app_reservation_new') }}"><i class="fa-solid fa-bowling-ball me-1"></i>Reserve</a>
 			</li>
-			</ul>
-			<ul class="navbar-nav">
-				{% block navbar_auth %}
-					{% if app.user %}
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-								{{ app.user }}
-							</a>
-							<ul class="dropdown-menu dropdown-menu-end">
-								<li>
-									<a class="dropdown-item" href="{{ path('app_my_reservations') }}"><i class="fa-solid fa-calendar-check me-2"></i>My Reservations</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="{{ path('app_profile') }}"><i class="fa-solid fa-user me-2"></i>Profile</a>
-								</li>
-								{% if is_granted('ROLE_EMPLOYEE') %}
-									<li><hr class="dropdown-divider"></li>
-									<li>
-										<a class="dropdown-item" href="/admin"><i class="fa-solid fa-gauge-high me-2"></i>Dashboard</a>
-									</li>
-								{% endif %}
-								<li><hr class="dropdown-divider"></li>
-								<li>
-									<a class="dropdown-item" href="{{ path('app_logout') }}"><i class="fa-solid fa-right-from-bracket me-2"></i>Logout</a>
-								</li>
-							</ul>
-						</li>
-					{% else %}
+		</ul>
+		<ul class="navbar-nav align-items-stretch">
+			{% block navbar_auth %}
+				{% if app.user %}
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('app_my_reservations') }}"><i class="fa-solid fa-calendar-check me-1"></i>My Reservations</a>
+					</li>
+					{% if is_granted('ROLE_EMPLOYEE') %}
 						<li class="nav-item">
-							<a class="btn btn-primary btn-lg ms-2 rounded-0" href="{{ path('app_login') }}"><i class="fa-solid fa-right-to-bracket me-1"></i>Login</a>
+							<a class="nav-link" href="/admin"><i class="fa-solid fa-gauge-high me-1"></i>Dashboard</a>
 						</li>
 					{% endif %}
-				{% endblock %}
-			</ul>
-		</div>
-	</nav>
+					<li class="nav-item ms-2 align-self-stretch">
+						<a class="btn btn-primary rounded-0 h-100 d-flex align-items-center" href="{{ path('app_profile') }}"><i class="fa-solid fa-user me-1"></i>Profile</a>
+					</li>
+				{% else %}
+					<li class="nav-item ms-2 align-self-stretch">
+						<a class="btn btn-primary rounded-0 h-100 d-flex align-items-center" href="{{ path('app_login') }}"><i class="fa-solid fa-right-to-bracket me-1"></i>Login</a>
+					</li>
+				{% endif %}
+			{% endblock %}
+		</ul>
+	</div>
+</nav>
