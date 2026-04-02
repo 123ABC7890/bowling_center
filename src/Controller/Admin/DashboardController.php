@@ -2,11 +2,12 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Lane;
-use App\Entity\Package;
+use App\Controller\Admin\LaneCrudController;
+use App\Controller\Admin\PackageCrudController;
+use App\Controller\Admin\ReservationCrudController;
+use App\Controller\Admin\TariffCrudController;
+use App\Controller\Admin\UserCrudController;
 use App\Entity\Reservation;
-use App\Entity\Tariff;
-use App\Entity\User;
 use App\Repository\LaneRepository;
 use App\Repository\ReservationRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -64,14 +65,14 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('Reservations', 'fa fa-calendar-check', Reservation::class);
-        yield MenuItem::linkToCrud('Lanes', 'fa fa-bowling-ball', Lane::class)
+        yield MenuItem::linkTo(ReservationCrudController::class, 'Reservations', 'fa fa-calendar-check');
+        yield MenuItem::linkTo(LaneCrudController::class, 'Lanes', 'fa fa-bowling-ball')
             ->setPermission('ROLE_ADMIN');
-        yield MenuItem::linkToCrud('Tariffs', 'fa fa-euro-sign', Tariff::class)
+        yield MenuItem::linkTo(TariffCrudController::class, 'Tariffs', 'fa fa-euro-sign')
             ->setPermission('ROLE_ADMIN');
-        yield MenuItem::linkToCrud('Packages', 'fa fa-gift', Package::class)
+        yield MenuItem::linkTo(PackageCrudController::class, 'Packages', 'fa fa-gift')
             ->setPermission('ROLE_ADMIN');
-        yield MenuItem::linkToCrud('Users', 'fa fa-users', User::class)
+        yield MenuItem::linkTo(UserCrudController::class, 'Users', 'fa fa-users')
             ->setPermission('ROLE_ADMIN');
     }
 }
