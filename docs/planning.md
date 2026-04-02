@@ -5,12 +5,45 @@
   - due: 2026-04-05
   - defaultExpanded: false
     ```md
-    Send email when reservation status changes via Doctrine event listener (3h)
+    Send email when reservation status changes (e.g. cancellation) via Doctrine event listener (3h)
+    Note: reservations are now auto-confirmed on creation
     ```
 
 ## Doing
 
 ## Done
+
+### 8.1 Homepage data from database
+
+  - due: 2026-04-02
+  - defaultExpanded: false
+    ```md
+    Load tariffs and packages from database instead of static HTML on homepage (1h)
+    ```
+
+### 8.2 Auto-confirm reservations
+
+  - due: 2026-04-02
+  - defaultExpanded: false
+    ```md
+    Default reservation status changed from pending to confirmed. Added constants (STATUS_CONFIRMED, STATUS_PENDING, STATUS_CANCELLED) to Reservation entity and replaced all static string references (1h)
+    ```
+
+### 8.3 Form validation flash alerts
+
+  - due: 2026-04-02
+  - defaultExpanded: false
+    ```md
+    Form errors now display as flash alert banners instead of inline errors. Removed novalidate to enable browser-side required field validation (1h)
+    ```
+
+### 8.4 UI improvements
+
+  - due: 2026-04-02
+  - defaultExpanded: false
+    ```md
+    Parallax background on main, footer component, navbar cleanup (logout moved to profile page, dropdown replaced with separate nav links), text-white headers for readability (2h)
+    ```
 
 ### 3.9 My reservations list
 
