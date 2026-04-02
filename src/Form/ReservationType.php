@@ -10,7 +10,10 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,11 +23,37 @@ class ReservationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        if ($options['is_guest']) {
+            $builder
+                ->add('name', TextType::class, [
+                    'label' => 'Name',
+                    'constraints' => [
+                        new Assert\NotBlank(),
+                        new Assert\Length(min: 2, max: 100),
+                    ],
+                ])
+                ->add('email', EmailType::class, [
+                    'label' => 'Email',
+                    'constraints' => [
+                        new Assert\NotBlank(),
+                        new Assert\Email(),
+                    ],
+                ])
+                ->add('phone', TelType::class, [
+                    'label' => 'Phone',
+                    'required' => false,
+                ]);
+        }
+
+        $dateData = $options['selected_date'] ? new \DateTime($options['selected_date']) : null;
+        $startHourData = $options['selected_start_hour'] ? new \DateTime($options['selected_start_hour']) : null;
+
         $builder
             ->add('date', DateType::class, [
                 'mapped' => false,
                 'widget' => 'single_text',
                 'html5' => true,
+                'data' => $dateData,
                 'attr' => ['min' => (new \DateTime())->format('Y-m-d')],
                 'constraints' => [
                     new Assert\NotBlank(),
@@ -35,6 +64,7 @@ class ReservationType extends AbstractType
                 'mapped' => false,
                 'widget' => 'single_text',
                 'html5' => true,
+                'data' => $startHourData,
                 'constraints' => [
                     new Assert\NotBlank(),
                 ],
@@ -46,6 +76,7 @@ class ReservationType extends AbstractType
                     '2 hours' => 2,
                     '3 hours' => 3,
                 ],
+                'data' => $options['selected_duration'],
                 'constraints' => [
                     new Assert\NotBlank(),
                 ],
@@ -107,6 +138,13 @@ class ReservationType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Reservation::class,
+            'is_guest' => false,
+            'selected_date' => null,
+            'selected_start_hour' => null,
+            'selected_duration' => 1,
+            'selected_lane' => 0,
+            'selected_snack' => 0,
+            'selected_party' => 0,
         ]);
     }
 }

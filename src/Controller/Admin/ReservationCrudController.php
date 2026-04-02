@@ -11,7 +11,10 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TelephoneField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class ReservationCrudController extends AbstractCrudController
 {
@@ -37,7 +40,10 @@ class ReservationCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield AssociationField::new('user');
+        yield AssociationField::new('user')->setRequired(false);
+        yield TextField::new('name')->hideOnIndex();
+        yield EmailField::new('email')->hideOnIndex();
+        yield TelephoneField::new('phone')->hideOnIndex();
         yield AssociationField::new('lane');
         yield AssociationField::new('tariff');
         yield MoneyField::new('appliedRate')->setCurrency('EUR')->setStoredAsCents(false);

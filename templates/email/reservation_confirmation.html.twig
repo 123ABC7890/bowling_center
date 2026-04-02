@@ -1,6 +1,6 @@
 <h2>Reservation Confirmed — Bowlingcenter Brooklyn</h2>
 
-<p>Dear {{ reservation.user.firstName }},</p>
+<p>Dear {{ reservation.user ? reservation.user.firstName : reservation.name }},</p>
 
 <p>Your reservation has been placed successfully. Here are the details:</p>
 

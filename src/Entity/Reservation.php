@@ -17,8 +17,17 @@ class Reservation
     private ?int $id = null;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'reservations')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     public ?User $user = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
+    public ?string $name = null;
+
+    #[ORM\Column(length: 180, nullable: true)]
+    public ?string $email = null;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    public ?string $phone = null;
 
     #[ORM\ManyToOne(targetEntity: Lane::class, inversedBy: 'reservations')]
     #[ORM\JoinColumn(nullable: false)]
